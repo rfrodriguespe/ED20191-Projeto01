@@ -16,7 +16,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         BinaryTree bt = new BinaryTree();
+
         char no;
+        boolean sair = false;
         do {
 
             System.out.println("PROJETO 01 - ARVORE BINARIA\n");
@@ -27,40 +29,45 @@ public class Main {
             System.out.print("Escolha sua opcao: ");
 
             String opcao = sc.next();
-            
+
             switch (opcao) {
                 case "a":
-                    System.out.print("Digite um caractere para inserir");
+                    System.out.print("\nDigite um caractere para inserir");
                     no = sc.next().charAt(0);
                     bt.add(no);
                     break;
                 case "b":
-                    System.out.print("Digite um caractere para remover");
+                    System.out.print("\nDigite um caractere para remover");
                     no = sc.next().charAt(0);
                     bt.delete(no);
                     break;
                 case "c":
-                    System.out.println("Deseja mostrar em:");
+                    System.out.println("\n\nDeseja mostrar em:");
                     System.out.println("a - Em ordem:");
                     System.out.println("b - Pre ordem:");
                     System.out.println("c - Pos ordem:");
+                    System.out.print("Escolha sua opcao: ");
                     char ordem = sc.next().charAt(0);
-                    if (ordem == 'a'){
+                    if (ordem == 'a') {
                         bt.printTreeInOrder();
-                    } else if (ordem == 'b'){
+                    } else if (ordem == 'b') {
                         bt.printTreePreOrder();
-                    } else {
+                    } else if (ordem == 'c') {
                         bt.printTreePostOrder();
+                    } else {
+                        System.out.println("OPCAO INVALIDA");
                     }
                     break;
                 case "d":
-                    System.out.println("OBRIGADO, ATE A PROXIMA");
+                    System.out.println("\nOBRIGADO, ATE A PROXIMA");
+                    sair = true;
                     break;
                 default:
-                    System.out.println("OCAO INVALIDA");
+                    System.out.println("\n\nOCAO INVALIDA");
             }
 
-        } while (sc.equals("d"));
+        } while (sair
+                != true);
     }
 
 }

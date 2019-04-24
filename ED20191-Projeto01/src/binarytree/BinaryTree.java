@@ -38,16 +38,21 @@ public class BinaryTree {
         return n;
     }
 
+    //public void printTreeInOrder() {
+    //    printTreeInOrder(this.root);
+    //    System.out.println("");
+    //}
     public void printTreeInOrder() {
         printTreeInOrder(this.root);
         System.out.println("");
+
     }
 
-    private void printTreeInOrder(Node node) {
-        if (node != null) {
-            printTreeInOrder(node.getLeft());
-            System.out.print(" " + node.getValue());
-            printTreeInOrder(node.getRight());
+    private void printTreeInOrder(Node n) {
+        if (n != null) {
+            printTreeInOrder(n.getLeft());
+            System.out.print(" " + n.getValue());
+            printTreeInOrder(n.getRight());
         }
     }
 
@@ -87,7 +92,7 @@ public class BinaryTree {
 
     private Node deleteRecursive(Node n, char value) {
         if (n == null) {
-            System.out.println("Arvore Vazia");
+            System.out.println("\n\nARVORE VAZIA\n");
             return null;
         }
 
