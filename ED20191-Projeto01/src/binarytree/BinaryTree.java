@@ -17,41 +17,25 @@ public class BinaryTree {
         this.root = null;
     }
 
-    public void add(int value) {
+    public void add(char value) {
         root = addRecursive(root, value);
     }
 
-    private Node addRecursive(Node current, int value) {
-        if (current == null) {
+    private Node addRecursive(Node n, char value) {
+        if (n == null) {
             return new Node(value);
         }
 
-        if (value < current.getValue()) {
-            current.setLeft(addRecursive(current.getLeft(), value));
-        } else if (value > current.getValue()) {
-            current.setRight(addRecursive(current.getRight(), value));
+        if (value < n.getValue()) {
+            n.setLeft(addRecursive(n.getLeft(), value));
+        } else if (value > n.getValue()) {
+            n.setRight(addRecursive(n.getRight(), value));
         } else {
             // value already exists
-            return current;
+            return n;
         }
 
-        return current;
-    }
-
-    public boolean containsNode(int value) {
-        return containsNodeRecursive(root, value);
-    }
-
-    private boolean containsNodeRecursive(Node current, int value) {
-        if (current == null) {
-            return false;
-        }
-        if (value == current.getValue()) {
-            return true;
-        }
-        return value < current.getValue()
-                ? containsNodeRecursive(current.getLeft(), value)
-                : containsNodeRecursive(current.getRight(), value);
+        return n;
     }
 
     public void printTreeInOrder() {
@@ -66,30 +50,71 @@ public class BinaryTree {
             printTreeInOrder(node.getRight());
         }
     }
-    
+
     public void printTreePreOrder() {
         printTreePreOrder(this.root);
         System.out.println("");
     }
 
-    private void printTreePreOrder(Node node) {
-        if (node != null) {
-            System.out.print(" " + node.getValue());
-            printTreePreOrder(node.getLeft());
-            printTreePreOrder(node.getRight());
+    private void printTreePreOrder(Node n) {
+        if (n != null) {
+            System.out.print(" " + n.getValue());
+            printTreePreOrder(n.getLeft());
+            printTreePreOrder(n.getRight());
         }
     }
-    
+
     public void printTreePostOrder() {
         printTreePostOrder(this.root);
         System.out.println("");
     }
 
-    private void printTreePostOrder(Node node) {
-        if (node != null) {
-            printTreePostOrder(node.getLeft());
-            printTreePostOrder(node.getRight());
-            System.out.print(" " + node.getValue());
+    private void printTreePostOrder(Node n) {
+        if (n != null) {
+            printTreePostOrder(n.getLeft());
+            printTreePostOrder(n.getRight());
+            System.out.print(" " + n.getValue());
         }
     }
+
+    private char findSmallestValue(Node root) {
+        return root.getLeft() == null ? root.getValue() : findSmallestValue(root.getLeft());
+    }
+
+    public void delete(char value) {
+        this.root = deleteRecursive(this.root, value);
+    }
+
+    private Node deleteRecursive(Node n, char value) {
+        if (n == null) {
+            System.out.println("Arvore Vazia");
+            return null;
+        }
+
+        if (value == n.getValue()) {
+            if (n.getLeft() == null && n.getRight() == null) {
+                return null;
+            }
+            if (n.getRight() == null) {
+                return n.getLeft();
+            }
+
+            if (n.getLeft() == null) {
+                return n.getRight();
+            }
+            //
+            char smallestValue = findSmallestValue(n.getRight());
+            n.setValue(smallestValue);
+            n.setRight(deleteRecursive(n.getRight(), smallestValue));
+            return n;
+            //
+        }
+        if (value < n.getValue()) {
+            n.setLeft(deleteRecursive(n.getLeft(), value));
+            return n;
+        }
+        n.setRight(deleteRecursive(n.getRight(), value));
+        return n;
+    }
+
 }
