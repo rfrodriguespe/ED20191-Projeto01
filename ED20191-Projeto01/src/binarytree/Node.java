@@ -11,19 +11,19 @@ package binarytree;
  */
 public class Node {
     
-    private char value;
-    private Node left,right;
+    private int value;
+    private Node left, right;
 
-    public Node(char value) {
+    public Node(int value) {
         this.value = value;
         this.left = this.right = null;
     }
 
-    public char getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(char value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
