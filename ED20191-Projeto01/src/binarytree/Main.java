@@ -32,12 +32,12 @@ public class Main {
 
             switch (opcao) {
                 case "a":
-                    System.out.print("\nDigite um caractere para inserir");
+                    System.out.print("\nDigite um caractere para inserir: ");
                     no = sc.next().charAt(0);
                     bt.add(no);
                     break;
                 case "b":
-                    System.out.print("\nDigite um caractere para remover");
+                    System.out.print("\nDigite um caractere para remover: ");
                     no = sc.next().charAt(0);
                     bt.delete(no);
                     break;
@@ -63,11 +63,10 @@ public class Main {
                     sair = true;
                     break;
                 default:
-                    System.out.println("\n\nOCAO INVALIDA");
+                    System.out.println("\n\nOPCAO INVALIDA");
             }
 
-        } while (sair
-                != true);
+        } while (sair != true);
     }
 
 }
