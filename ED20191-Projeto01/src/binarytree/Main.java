@@ -46,11 +46,18 @@ public class Main {
             switch (opcao) {
                 case "a":
                     System.out.print("\nDigite um caractere para inserir: ");
-                    no = sc.next().charAt(0);
+                    String valor = sc.next();
+                    if (valor.length() > 1){
+                        System.out.println("Voce digitou mais de um caractere");
+                        System.out.println("Consideraremos apenas o primeiro");
+                        System.out.println("Se o mesmo for uma letra\n");
+                    }
+                    no = valor.charAt(0);
                     if (ehChar(no)){
                         bt.add(no);
+                        System.out.println("\nLetra '"+no+"' inserida na arvore\n");
                     } else {
-                        System.out.println("Permitido apenas CHAR");
+                        System.out.println("ERRO - Permitido apenas CHAR\n");
                     }
                     break;
                 case "b":
