@@ -54,6 +54,42 @@ public class BinaryTree {
                 : containsNodeRecursive(current.getRight(), value);
     }
 
+    public void printTreeInOrder() {
+        printTreeInOrder(this.root);
+        System.out.println("");
+    }
+
+    private void printTreeInOrder(Node node) {
+        if (node != null) {
+            printTreeInOrder(node.getLeft());
+            System.out.print(" " + node.getValue());
+            printTreeInOrder(node.getRight());
+        }
+    }
     
+    public void printTreePreOrder() {
+        printTreePreOrder(this.root);
+        System.out.println("");
+    }
+
+    private void printTreePreOrder(Node node) {
+        if (node != null) {
+            System.out.print(" " + node.getValue());
+            printTreePreOrder(node.getLeft());
+            printTreePreOrder(node.getRight());
+        }
+    }
     
+    public void printTreePostOrder() {
+        printTreePostOrder(this.root);
+        System.out.println("");
+    }
+
+    private void printTreePostOrder(Node node) {
+        if (node != null) {
+            printTreePostOrder(node.getLeft());
+            printTreePostOrder(node.getRight());
+            System.out.print(" " + node.getValue());
+        }
+    }
 }
