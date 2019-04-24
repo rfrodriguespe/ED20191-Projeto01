@@ -13,6 +13,19 @@ import java.util.Scanner;
  */
 public class Main {
 
+    public static boolean ehChar(char c) {
+        boolean ok = false;
+        for (char i = 'a'; i <= 'z'; i++) {
+            if (c == i) {
+                ok = true;
+                return true;
+            } else {
+                ok = false;
+            }
+        }
+        return ok;
+    }
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         BinaryTree bt = new BinaryTree();
@@ -34,7 +47,11 @@ public class Main {
                 case "a":
                     System.out.print("\nDigite um caractere para inserir: ");
                     no = sc.next().charAt(0);
-                    bt.add(no);
+                    if (ehChar(no)){
+                        bt.add(no);
+                    } else {
+                        System.out.println("Permitido apenas CHAR");
+                    }
                     break;
                 case "b":
                     System.out.print("\nDigite um caractere para remover: ");
